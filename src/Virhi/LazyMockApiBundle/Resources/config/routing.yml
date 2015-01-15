@@ -1,0 +1,3 @@
+virhi_lazy_mock_api_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: VirhiLazyMockApiBundle:Default:index }
