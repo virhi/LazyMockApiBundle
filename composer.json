@@ -27,7 +27,6 @@
         "snc/redis-bundle": "1.1.*",
         "predis/predis": "0.8.*",
         "virhi/admin-bundle": "0.1.*",
-        "virhi/admin-bundle": "0.1.*",
         "friendsofsymfony/jsrouting-bundle": "1.5.*",
         "virhi/component": "@dev"
     },
