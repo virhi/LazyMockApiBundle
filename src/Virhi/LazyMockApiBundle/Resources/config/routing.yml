@@ -1,3 +1,19 @@
 virhi_lazy_mock_api_homepage:
     path:     /
     defaults: { _controller: VirhiLazyMockApiBundle:Mock:index }
+    options:
+        expose: true
+
+virhi_lazy_mock_api_save:
+    path:     /save
+    defaults: { _controller: VirhiLazyMockApiBundle:Mock:saveMock }
+    options:
+        expose: true
+
+virhi_lazy_mock_api_mock:
+    path:     /mock/{url}
+    defaults: { _controller: VirhiLazyMockApiBundle:Mock:mock, url: false }
+    requirements:
+            url: ".+"
+    options:
+        expose: true

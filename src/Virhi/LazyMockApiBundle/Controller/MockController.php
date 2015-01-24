@@ -20,8 +20,27 @@ class MockController extends Controller
         return $this->render('VirhiLazyMockApiBundle:Mock:index.html.twig');
     }
 
-    public function saveMockAction()
+    public function saveMockAction(Request $request)
     {
+        $content = json_decode($request->getContent());
+        $key     = md5(json_encode($content->request));
+
+        $redis = $this->container->get('snc_redis.default');
+        $redis->set($key, json_encode($content->response));
+
         return new JsonResponse();
+    }
+
+    public function mockAction(Request $request, $url)
+    {
+
+        var_dump($url);
+        die('default');
+        $content = json_decode($request->getContent());
+        $key     = md5(json_encode($content->request));
+
+        $redis = $this->container->get('snc_redis.default');
+
+        return new JsonResponse($redis->get($key));
     }
 } 

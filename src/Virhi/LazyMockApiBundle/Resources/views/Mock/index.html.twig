@@ -105,6 +105,9 @@
 
 
 {% block js %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="/js/fos_js_routes.js"></script>
+
     <script>
         $( document ).ready(function() {
             $( ".save-btn" ).click(function() {
@@ -117,13 +120,11 @@
             var request  = {};
             var response = {};
 
-            request.url     = $("input[name='url']").val();
-            request.method  = $("input:radio[name='method']:checked").val();
-            request.content = $("textarea[name='requestcontent']").val();
-
-            response.status = $("input[name='status']").val();
+            request.url      = $("input[name='url']").val();
+            request.method   = $("input:radio[name='method']:checked").val();
+            request.content  = $("textarea[name='requestcontent']").val();
+            response.status  = $("input[name='status']").val();
             response.content = $("textarea[name='responsecontent']").val();
-
 
             mock.request  = request;
             mock.response = response;
@@ -132,11 +133,18 @@
 
             $.ajax({
                 type: "POST",
-                url: "some.php",
-                data: mock
-            }).done(function( msg ) {
-                alert( "Data Saved: " + msg );
+                url: Routing.generate('virhi_lazy_mock_api_save'),
+                data: JSON.stringify(mock),
+                contentType: 'application/json; charset=UTF-8',
+                success: sucess
+            }).done(function( ) {
+                console.log('done');
             });
         };
+
+        sucess = function () {
+            console.log("success");
+        };
+
     </script>
 {% endblock %}
