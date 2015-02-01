@@ -21,11 +21,11 @@ class ResponseFactory
     {
         $content = json_decode($jsonResponse);
         $mapping = array(
-            'status'     => 'setStatus',
+            'status'  => 'setStatus',
             'content' => 'setContent',
         );
 
-        if (!property_exists($content, 'response')) {
+        if (!is_object($content) || !property_exists($content, 'response')) {
             throw new \RuntimeException('error de response builder');
         }
 

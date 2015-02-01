@@ -9,11 +9,15 @@
 namespace Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis;
 
 use Virhi\Component\Repository\RemoverInterface;
+use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Mock;
 
 class Remover extends Repository implements RemoverInterface
 {
-    public function remove($entity)
+    public function remove($mock)
     {
-        $this->getClient()->set('toto', 'tata');
+        if (!$mock instanceof Mock) {
+            throw new \RuntimeException("Invalid entity to save");
+        }
+        $this->getClient()->del($mock->getId());
     }
 }

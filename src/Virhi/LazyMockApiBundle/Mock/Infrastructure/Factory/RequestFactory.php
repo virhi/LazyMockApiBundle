@@ -21,7 +21,7 @@ class RequestFactory
             'content' => 'setContent',
         );
 
-        if (!property_exists($content, 'request')) {
+        if (!is_object($content) || !property_exists($content, 'request')) {
             throw new \RuntimeException('error de request builder');
         }
 

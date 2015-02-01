@@ -12,5 +12,10 @@ use Virhi\Component\Query\Context\ContextInterface;
 
 class ListMockContext implements ContextInterface
 {
+    protected $limit;
 
+    function __construct($limit = '0:5')
+    {
+        $this->limit = $limit;
+    }
 }

@@ -10,6 +10,12 @@ virhi_lazy_mock_api_save:
     options:
         expose: true
 
+virhi_lazy_mock_api_delete:
+    path:     /delete
+    defaults: { _controller: VirhiLazyMockApiBundle:Mock:deleteMock}
+    options:
+        expose: true
+
 virhi_lazy_mock_api_mock:
     path:     /mock/{url}
     defaults: { _controller: VirhiLazyMockApiBundle:Mock:mock, url: false }

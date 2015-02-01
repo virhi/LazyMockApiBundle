@@ -28,9 +28,7 @@ class MockQuery extends AbstractQuery implements QueryInterface
             throw new InvalidContextException();
         }
 
-
         $request = ReadRequestFactory::build($context->getRequest());
-
         return $this->getReadService()->getMock($request);
     }
 } 
