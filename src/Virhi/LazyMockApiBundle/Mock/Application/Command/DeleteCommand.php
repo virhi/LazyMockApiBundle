@@ -9,7 +9,14 @@
 namespace Virhi\LazyMockApiBundle\Mock\Application\Command;
 
 
-class DeleteCommand 
+use Virhi\Component\Command\CommandInterface;
+use Virhi\Component\Command\Context\ContextInterface;
+
+class DeleteCommand extends AbstractCommand implements CommandInterface
 {
+    public function execute(ContextInterface $context)
+    {
+        $this->getWriteService()->removeMock();
+    }
 
 } 

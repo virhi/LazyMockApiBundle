@@ -17,3 +17,9 @@ virhi_lazy_mock_api_mock:
             url: ".+"
     options:
         expose: true
+
+virhi_lazy_mock_api_list:
+    path:     /list
+    defaults: { _controller: VirhiLazyMockApiBundle:Mock:listMock }
+    options:
+        expose: true

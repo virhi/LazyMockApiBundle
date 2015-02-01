@@ -1,0 +1,26 @@
+parameters:
+    virhi_lazy_mock_api.infrastructure.repository.redis.attacher.class: Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis\Attacher
+    virhi_lazy_mock_api.infrastructure.repository.redis.remover.class: Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis\Remover
+    virhi_lazy_mock_api.infrastructure.repository.redis.finder.class: Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis\Finder
+    virhi_lazy_mock_api.infrastructure.repository.redis.list_finder.class: Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis\ListFinder
+
+services:
+    virhi_lazy_mock_api.infrastructure.repository.redis.finder:
+        class: %virhi_lazy_mock_api.infrastructure.repository.redis.finder.class%
+        arguments:
+            - @snc_redis.default
+
+    virhi_lazy_mock_api.infrastructure.repository.redis.list_finder:
+        class: %virhi_lazy_mock_api.infrastructure.repository.redis.list_finder.class%
+        arguments:
+            - @snc_redis.default
+
+    virhi_lazy_mock_api.infrastructure.repository.redis.attacher:
+        class: %virhi_lazy_mock_api.infrastructure.repository.redis.attacher.class%
+        arguments:
+            - @snc_redis.default
+
+    virhi_lazy_mock_api.infrastructure.repository.redis.remover:
+        class: %virhi_lazy_mock_api.infrastructure.repository.redis.remover.class%
+        arguments:
+            - @snc_redis.default

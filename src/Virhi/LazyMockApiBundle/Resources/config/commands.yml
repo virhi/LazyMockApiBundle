@@ -1,0 +1,20 @@
+parameters:
+    virhi_lazy_mock_api.application.command.abstract.class: Virhi\LazyMockApiBundle\Mock\Application\Command\AbstractCommand
+    virhi_lazy_mock_api.application.command.edit.class: Virhi\LazyMockApiBundle\Mock\Application\Command\EditCommand
+    virhi_lazy_mock_api.application.command.delete.class: Virhi\LazyMockApiBundle\Mock\Application\Command\DeleteCommand
+
+services:
+
+    virhi_lazy_mock_api.application.command.abstract:
+        class: %virhi_lazy_mock_api.application.command.abstract.class%
+        abstract:  true
+        arguments:
+            - @virhi_lazy_mock_api.domain.service.write
+
+    virhi_lazy_mock_api.application.command.edit:
+        class: %virhi_lazy_mock_api.application.command.edit.class%
+        parent: virhi_lazy_mock_api.application.command.abstract
+
+    virhi_lazy_mock_api.application.command.delete:
+        class: %virhi_lazy_mock_api.application.command.delete.class%
+        parent: virhi_lazy_mock_api.application.command.abstract

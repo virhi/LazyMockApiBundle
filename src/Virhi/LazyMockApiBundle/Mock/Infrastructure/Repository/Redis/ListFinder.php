@@ -8,8 +8,19 @@
 
 namespace Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis;
 
+use Virhi\Component\Repository\ListFinderInterface;
+use Virhi\Component\Search\SearchInterface;
 
-class ListFinder 
+class ListFinder extends Repository implements ListFinderInterface
 {
+    /**
+     * @param SearchInterface $search
+     * @return mixed
+     */
+    public function find(SearchInterface $search)
+    {
+        return $this->getClient()->keys('*');
+    }
+
 
 } 
