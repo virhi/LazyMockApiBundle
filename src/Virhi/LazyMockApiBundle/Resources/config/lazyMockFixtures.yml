@@ -1,0 +1,17 @@
+fixtures:
+    get_urltest:
+        request:
+            url: "urltest"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content"
+    get_urltest2:
+        request:
+            url: "urltest2"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 2"
