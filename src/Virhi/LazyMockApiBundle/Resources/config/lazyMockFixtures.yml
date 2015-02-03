@@ -1,13 +1,21 @@
 fixtures:
     get_urltest:
         request:
+            url: "urltestget"
+            method: "GET"
+            content:
+        response:
+          status: "200"
+          content: "response content"
+    post_urltest:
+        request:
             url: "urltest"
             method: "POST"
             content: "test"
         response:
           status: "200"
           content: "response content"
-    get_urltest2:
+    post_urltest2:
         request:
             url: "urltest2"
             method: "POST"
@@ -15,7 +23,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 2"
-    get_urltest3:
+    post_urltest3:
         request:
             url: "urltest3"
             method: "POST"
@@ -23,7 +31,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 3"
-    get_urltest4:
+    post_urltest4:
         request:
             url: "urltest4"
             method: "POST"
@@ -31,7 +39,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 4"
-    get_urltest5:
+    post_urltest5:
         request:
             url: "urltest5"
             method: "POST"
@@ -39,7 +47,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 5"
-    get_urltest6:
+    post_urltest6:
         request:
             url: "urltest6"
             method: "POST"
@@ -47,7 +55,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 6"
-    get_urltest7:
+    post_urltest7:
         request:
             url: "urltest7"
             method: "POST"
@@ -55,7 +63,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 7"
-    get_urltest8:
+    post_urltest8:
         request:
             url: "urltest8"
             method: "POST"
@@ -63,7 +71,7 @@ fixtures:
         response:
           status: "200"
           content: "response content 8"
-    get_urltest9:
+    post_urltest9:
         request:
             url: "urltest9"
             method: "POST"
@@ -71,11 +79,11 @@ fixtures:
         response:
           status: "200"
           content: "response content 9"
-    get_urltest10:
+    post_urltest10:
         request:
             url: "urltest10"
             method: "POST"
             content: "test"
         response:
-          status: "200"
+          status: "400"
           content: "response content 10"

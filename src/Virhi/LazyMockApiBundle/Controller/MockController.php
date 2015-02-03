@@ -11,34 +11,12 @@ namespace Virhi\LazyMockApiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Virhi\LazyMockApiBundle\Mock\Application\Context\Command\DeleteMockContext;
-use Virhi\LazyMockApiBundle\Mock\Application\Context\Command\EditMockContext;
 use Virhi\LazyMockApiBundle\Mock\Application\Context\Query\ListMockContext;
-use Virhi\LazyMockApiBundle\Mock\Application\Context\Query\MockContext;
+use Virhi\LazyMockApiBundle\Mock\Application\Context\Query\RequestMockContext;
 
 
 class MockController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('VirhiLazyMockApiBundle:Mock:index.html.twig');
-    }
-
-    public function saveMockAction(Request $request)
-    {
-        $context = new EditMockContext($request);
-        $this->get('virhi_lazy_mock_api.application.command.edit')->execute($context);
-
-        return new JsonResponse();
-    }
-
-    public function mockAction(Request $request, $url)
-    {
-        $context = new MockContext($request);
-        $result  = $this->get('virhi_lazy_mock_api.application.query.mock')->execute($context);
-
-        return new JsonResponse($result->jsonSerialize());
-    }
 
     public function listMockAction()
     {
@@ -48,11 +26,13 @@ class MockController extends Controller
         return new JsonResponse($result);
     }
 
-    public function deleteMockAction(Request $request)
-    {
-        $context = new DeleteMockContext($request);
-        $result  = $this->get('virhi_lazy_mock_api.application.command.delete')->execute($context);
 
-        return new JsonResponse($result);
+
+    public function mockAction(Request $request, $url)
+    {
+        $context = new RequestMockContext($request);
+        $result  = $this->get('virhi_lazy_mock_api.application.query.request_mock')->execute($context);
+
+        return new JsonResponse($result->jsonSerialize());
     }
 } 

@@ -1,18 +1,18 @@
-virhi_lazy_mock_api_homepage:
-    path:     /
-    defaults: { _controller: VirhiLazyMockApiBundle:Mock:index }
+virhi_lazy_mock_api_ui_homepage:
+    path:     /ui
+    defaults: { _controller: VirhiLazyMockApiBundle:Ui:index }
     options:
         expose: true
 
-virhi_lazy_mock_api_save:
-    path:     /save
-    defaults: { _controller: VirhiLazyMockApiBundle:Mock:saveMock }
+virhi_lazy_mock_api_ui_mock:
+    path:     /ui/mock/{key}
+    defaults: { _controller: VirhiLazyMockApiBundle:Ui:mock}
     options:
         expose: true
 
-virhi_lazy_mock_api_delete:
-    path:     /delete
-    defaults: { _controller: VirhiLazyMockApiBundle:Mock:deleteMock}
+virhi_lazy_mock_api_ui_list:
+    path:     /ui/list
+    defaults: { _controller: VirhiLazyMockApiBundle:Ui:listMock }
     options:
         expose: true
 
@@ -27,5 +27,17 @@ virhi_lazy_mock_api_mock:
 virhi_lazy_mock_api_list:
     path:     /list
     defaults: { _controller: VirhiLazyMockApiBundle:Mock:listMock }
+    options:
+        expose: true
+
+virhi_lazy_mock_api_save:
+    path:     /save
+    defaults: { _controller: VirhiLazyMockApiBundle:MockWrite:saveMock }
+    options:
+        expose: true
+
+virhi_lazy_mock_api_delete:
+    path:     /delete
+    defaults: { _controller: VirhiLazyMockApiBundle:MockWrite:deleteMock}
     options:
         expose: true

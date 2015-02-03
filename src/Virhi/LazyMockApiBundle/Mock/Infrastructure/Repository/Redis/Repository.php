@@ -30,4 +30,33 @@ class Repository
         return $this->client;
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function getByKey($key)
+    {
+        if (!$this->getClient()->exists($key)) {
+            throw new \RuntimeException('mock for ' . $key . ' do not exist');
+        }
+        return $this->getClient()->get($key);
+    }
+
+    public function deleteAll()
+    {
+        $this->delete($this->getClient()->keys('*'));
+    }
+
+    public function deleteList(array $keys)
+    {
+        foreach ($keys as $key) {
+            $this->delete($key);
+        }
+    }
+
+    public function delete($key)
+    {
+        $this->getClient()->del($key);
+    }
+
 }

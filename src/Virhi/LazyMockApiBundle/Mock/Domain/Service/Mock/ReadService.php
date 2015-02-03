@@ -12,6 +12,7 @@ use Virhi\Component\Repository\FinderInterface;
 use Virhi\Component\Repository\ListFinderInterface;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Mock;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Request;
+use Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis\MockRepository;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Search\Search;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Search\ListSearch;
 
@@ -27,10 +28,16 @@ class ReadService
      */
     protected $listFinder;
 
-    function __construct(FinderInterface $finder, ListFinderInterface $listFinder)
+    /**
+     * @var
+     */
+    protected $mockRepository;
+
+    function __construct(FinderInterface $finder, ListFinderInterface $listFinder, MockRepository $mockRepository)
     {
         $this->finder = $finder;
         $this->listFinder = $listFinder;
+        $this->mockRepository = $mockRepository;
     }
 
     /**
@@ -49,10 +56,18 @@ class ReadService
         return $mock;
     }
 
+    /**
+     * @param $key
+     * @return Mock
+     */
+    public function getMockByKey($key)
+    {
+        return $this->mockRepository->getMock($key);
+    }
+
     public function getListMock()
     {
         $search = new ListSearch();
         return $this->listFinder->find($search);
     }
-
 }

@@ -1,0 +1,18 @@
+{% extends "VirhiAdminBundle:Admin:layout.html.twig" %}
+
+{% block content %}
+    <div>
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Response</h3>
+            </div>
+            <div class="box-body">
+                <ul class="list-group">
+                    {% for item in list %}
+                        <li class="list-group-item"><span class="badge">{{ item.response.status }}</span><a href="{{ path('virhi_lazy_mock_api_ui_mock', {'key': item.id}) }}">{{ item.request.url }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

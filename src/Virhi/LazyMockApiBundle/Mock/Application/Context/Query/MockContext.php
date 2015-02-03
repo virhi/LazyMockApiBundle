@@ -9,25 +9,24 @@
 namespace Virhi\LazyMockApiBundle\Mock\Application\Context\Query;
 
 use Virhi\Component\Query\Context\ContextInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class MockContext implements ContextInterface
 {
-    /**
-     * @var Request
-     */
-    protected $request;
 
-    function __construct(Request $request)
+    protected $key;
+
+    function __construct($key)
     {
-        $this->request = $request;
+        $this->key = $key;
     }
 
     /**
-     * @return Request
+     * @return mixed
      */
-    public function getRequest()
+    public function getKey()
     {
-        return $this->request;
+        return $this->key;
     }
+
+
 }

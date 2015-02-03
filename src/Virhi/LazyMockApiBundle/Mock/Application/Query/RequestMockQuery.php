@@ -2,21 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: virhi
- * Date: 22/01/15
- * Time: 00:11
+ * Date: 03/02/15
+ * Time: 22:15
  */
 
 namespace Virhi\LazyMockApiBundle\Mock\Application\Query;
 
-
 use Virhi\Component\Exception\InvalidContextException;
 use Virhi\Component\Query\Context\ContextInterface;
 use Virhi\Component\Query\QueryInterface;
-use Virhi\LazyMockApiBundle\Mock\Application\Context\Query\MockContext;
+use Virhi\LazyMockApiBundle\Mock\Application\Context\Query\RequestMockContext;
 use Virhi\LazyMockApiBundle\Mock\Application\Factory\ReadRequestFactory;
 
-
-class MockQuery extends AbstractQuery implements QueryInterface
+class RequestMockQuery extends AbstractQuery implements QueryInterface
 {
     /**
      * @param ContextInterface $context
@@ -24,10 +22,11 @@ class MockQuery extends AbstractQuery implements QueryInterface
      */
     public function execute(ContextInterface $context)
     {
-        if (!$context instanceof MockContext) {
+        if (!$context instanceof RequestMockContext) {
             throw new InvalidContextException();
         }
 
-        return $this->getReadService()->getMockByKey($context->getKey());
+        $request = ReadRequestFactory::build($context->getRequest());
+        return $this->getReadService()->getMock($request);
     }
-} 
+}

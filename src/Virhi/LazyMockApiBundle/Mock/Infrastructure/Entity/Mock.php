@@ -21,10 +21,10 @@ class Mock extends Entity
      */
     protected $response;
 
-    function __construct(Request $request, Response $response)
+    function __construct(Request $request = null, Response $response = null)
     {
-        $this->request = $request;
-        $this->response = $response;
+        $this->request  = $request === null ? new Request(): $request;
+        $this->response = $response === null ? new Response(): $response;
     }
 
     /**

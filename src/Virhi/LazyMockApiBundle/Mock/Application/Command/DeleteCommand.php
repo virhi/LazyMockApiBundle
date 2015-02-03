@@ -23,5 +23,4 @@ class DeleteCommand extends AbstractCommand implements CommandInterface
         }
         $this->getWriteService()->removeMock(MockFactory::build($context->getRequest()));
     }
-
 } 

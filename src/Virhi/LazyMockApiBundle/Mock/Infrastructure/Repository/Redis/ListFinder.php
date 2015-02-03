@@ -13,7 +13,7 @@ use Virhi\Component\Search\SearchInterface;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Factory\MockFactory;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Search\ListSearch;
 
-class ListFinder extends Repository implements ListFinderInterface
+class ListFinder extends MockRepository implements ListFinderInterface
 {
     /**
      * @param SearchInterface $search
@@ -30,9 +30,9 @@ class ListFinder extends Repository implements ListFinderInterface
 
         foreach ($keys as $key) {
             try {
-                $result[] = MockFactory::build($this->getClient()->get($key));
+                $result[] = $this->getMock($key);
             } catch (\Exception $e) {
-
+                //@todo logger $e
             }
         }
 

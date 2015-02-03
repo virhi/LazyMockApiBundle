@@ -33,5 +33,4 @@ class WriteService
     {
         $this->remover->remove($mock);
     }
-
 }

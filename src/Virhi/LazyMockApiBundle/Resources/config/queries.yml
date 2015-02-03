@@ -2,6 +2,7 @@ parameters:
     virhi_lazy_mock_api.application.query.abstract.class: Virhi\LazyMockApiBundle\Mock\Application\Query\AbstractQuery
     virhi_lazy_mock_api.application.query.list.class: Virhi\LazyMockApiBundle\Mock\Application\Query\ListMockQuery
     virhi_lazy_mock_api.application.query.mock.class: Virhi\LazyMockApiBundle\Mock\Application\Query\MockQuery
+    virhi_lazy_mock_api.application.query.request_mock.class: Virhi\LazyMockApiBundle\Mock\Application\Query\RequestMockQuery
 
 services:
     virhi_lazy_mock_api.application.query.abstract:
@@ -16,4 +17,8 @@ services:
 
     virhi_lazy_mock_api.application.query.mock:
         class: %virhi_lazy_mock_api.application.query.mock.class%
+        parent: virhi_lazy_mock_api.application.query.abstract
+
+    virhi_lazy_mock_api.application.query.request_mock:
+        class: %virhi_lazy_mock_api.application.query.request_mock.class%
         parent: virhi_lazy_mock_api.application.query.abstract

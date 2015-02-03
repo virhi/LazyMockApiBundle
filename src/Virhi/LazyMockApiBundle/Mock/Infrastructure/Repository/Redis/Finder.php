@@ -10,29 +10,22 @@ namespace Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis;
 
 use Virhi\Component\Repository\FinderInterface;
 use Virhi\Component\Search\SearchInterface;
-use Virhi\LazyMockApiBundle\Mock\Infrastructure\Factory\MockFactory;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Search\Search;
 
-class Finder extends Repository implements FinderInterface
+class Finder extends MockRepository implements FinderInterface
 {
     /**
      * @param SearchInterface $search
-     * @return mixed
+     * @return \Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Mock
      */
     public function find(SearchInterface $search)
     {
-        $result = null;
         if (!$search instanceof Search) {
             throw new \RuntimeException("invalid search");
         }
 
-        $key        = md5(json_encode($search->getRequest()));
-        $jsonResult = $this->getClient()->get($key);
-
-        if ($jsonResult != null ) {
-            $result = MockFactory::build($this->getClient()->get($key));
-        }
-        return $result;
+        $key = md5(json_encode($search->getRequest()));
+        return $this->getMock($key);
     }
 
 } 

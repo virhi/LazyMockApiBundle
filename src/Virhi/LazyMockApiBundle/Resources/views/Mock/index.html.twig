@@ -1,106 +1,7 @@
 {% extends "VirhiAdminBundle:Admin:layout.html.twig" %}
 
 {% block content %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid text-right">
-            <button class="btn-toolbar btn btn-default navbar-btn save-btn">Enregistrer</button>
-        </div>
-    </nav>
-    <div class="box box-primary">
-        <div class="box-header">
-            <h3 class="box-title">Request</h3>
-        </div>
-        <div class="box-body">
-            <form role="form">
-                <div class="form-group">
-                    <label for="url">URL</label>
-                    <input type="url" class="form-control" id="url" name="url" placeholder="url" required>
-                </div>
-                <div class="form-group">
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosGet" value="GET" checked>
-                            GET
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosPost" value="POST">
-                            POST
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosPut" value="PUT">
-                            PUT
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosPatch" value="PATCH">
-                            PATCH
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosDelete" value="DELETE">
-                            DELETE
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosHead" value="HEAD">
-                            HEAD
-                        </label>
-                        <label>
-                            <input type="radio" name="method" id="optionsRadiosOptions" value="OPTIONS">
-                            OPTIONS
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Request Header</label>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="requestheader" class="form-control" id="requestheader" name="requestheader" placeholder="Request header" >
-                        </div>
-                        <div class="col-md-8">
-                            <input type="requestheadercontent" class="form-control" id="requestheadercontent" name="requestheadercontent" placeholder="Request header content">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="requestcontent">Request Content</label>
-                    <textarea name="requestcontent" class="form-control" rows="3" placeholder="Request content"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="box box-primary">
-        <div class="box-header">
-            <h3 class="box-title">Response</h3>
-        </div>
-        <div class="box-body">
-            <form role="form">
-                <div class="form-group">
-                    <label for="url">Status</label>
-                    <input type="status" class="form-control" id="status" name="status" placeholder="status" required>
-                </div>
-                <div class="form-group">
-                    <label>Response Header</label>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="responseheader" class="form-control" id="responseheader" name="responseheader" placeholder="Response header">
-                        </div>
-                        <div class="col-md-8">
-                            <input type="responseheadercontent" class="form-control" id="responseheadercontent" name="responseheadercontent" placeholder="Response header content">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="responsecontent">Response Content</label>
-                    <textarea required name="responsecontent" class="form-control" rows="3" placeholder="Response content"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid text-right">
-            <button class="btn-toolbar btn btn-default navbar-btn save-btn">Enregistrer</button>
-        </div>
-    </nav>
+    {% include "VirhiLazyMockApiBundle:Mock:form.html.twig" with {'mock': mock} only %}
 {% endblock %}
 
 
@@ -145,6 +46,5 @@
         sucess = function () {
             console.log("success");
         };
-
     </script>
 {% endblock %}

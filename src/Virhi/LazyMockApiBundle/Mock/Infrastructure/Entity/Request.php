@@ -60,6 +60,9 @@ class Request extends Entity
      */
     public function setContent($content)
     {
+        if ($content === '') {
+            $content = null;
+        }
         $this->content = $content;
     }
 }
