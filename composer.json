@@ -26,7 +26,7 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "snc/redis-bundle": "1.1.*",
         "predis/predis": "0.8.*",
-        "virhi/admin-bundle": "0.1.*",
+        "virhi/admin-bundle": "master",
         "friendsofsymfony/jsrouting-bundle": "1.5.*",
         "virhi/component": "@dev"
     },

@@ -26,8 +26,6 @@ class MockController extends Controller
         return new JsonResponse($result);
     }
 
-
-
     public function mockAction(Request $request, $url)
     {
         $context = new RequestMockContext($request);
