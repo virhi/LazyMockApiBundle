@@ -25,9 +25,9 @@
         "symfony/symfony": "~2.3",
         "snc/redis-bundle": "1.1.*",
         "predis/predis": "0.8.*",
-        "virhi/admin-bundle": "dev-master",
+        "virhi/admin-bundle": "0.0.*",
         "friendsofsymfony/jsrouting-bundle": "1.5.*",
-        "virhi/component": "dev-master"
+        "virhi/component": "0.0.*"
     },
 
     "require-dev": {
