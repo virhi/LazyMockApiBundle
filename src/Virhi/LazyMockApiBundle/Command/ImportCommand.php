@@ -65,10 +65,7 @@ class ImportCommand extends ContainerAwareCommand
             $fileContent = $parser->parse(file_get_contents($fileLocator->locate($this->fileName)));
             foreach ($fileContent['fixtures'] as $fixture)
             {
-                var_dump($fixture);
                 $jsonMock = json_encode($fixture);
-                var_dump($jsonMock);
-                die;
                 $this->getContainer()->get('virhi_lazy_mock_api.domain.service.write')->editMock(MockFactory::build($jsonMock));
             }
 
