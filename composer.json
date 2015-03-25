@@ -27,7 +27,7 @@
         "predis/predis": "0.8.*",
         "virhi/admin-bundle": "master",
         "friendsofsymfony/jsrouting-bundle": "1.5.*",
-        "virhi/component": "@dev"
+        "virhi/component": "dev-master"
     },
 
     "require-dev": {
