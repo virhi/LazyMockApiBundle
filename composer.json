@@ -30,6 +30,7 @@
         "virhi/component": "0.0.*@dev"
     },
 
+
     "require-dev": {
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
