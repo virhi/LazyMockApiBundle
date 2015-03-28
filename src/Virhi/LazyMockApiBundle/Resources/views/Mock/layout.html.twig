@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+    {% include 'VirhiAdminBundle:Theme:head.html.twig' %}
+    <body class="skin-blue">
+    <!-- Site wrapper -->
+        <div class="wrapper">
+            {{ render(controller('VirhiLazyMockApiBundle:Ui:header')) }}
+            <!-- =============================================== -->
+            {{ render(controller('VirhiLazyMockApiBundle:Ui:sidebar')) }}
+            <!-- =============================================== -->
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <div class="content-wrapper">
+                {% include 'VirhiAdminBundle:Theme:contentHeader.html.twig' %}
+                <!-- Main content -->
+                <section class="content">
+                    {% block content %}
+                    {% endblock %}
+                </section><!-- /.content -->
+            </div><!-- /.content-wrapper -->
+            {{ render(controller('VirhiLazyMockApiBundle:Ui:footer')) }}
+        </div><!-- ./wrapper -->
+
+    {% block javascript %}
+        {% javascripts
+        '@VirhiAdminBundle/Resources/public/js/virhiadmin.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+    </body>
+</html>

@@ -8,6 +8,6 @@ class VirhiLazyMockApiBundle extends Bundle
 {
     public function getParent()
     {
-        return 'VirhiAdminBundle';
+
     }
 }
