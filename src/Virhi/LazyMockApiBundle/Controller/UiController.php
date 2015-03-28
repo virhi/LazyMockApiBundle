@@ -58,7 +58,7 @@ class UiController extends Controller
         $viewParams = array(
             'user' =>  new User('vincent', 'rhino', 'developpeur', true),
         );
-        return $this->render('VirhiAdminBundle:Theme:header.html.twig', $viewParams);
+        return $this->render('VirhiLazyMockApiBundle:Mock:header.html.twig', $viewParams);
     }
 
     public function footerAction()
