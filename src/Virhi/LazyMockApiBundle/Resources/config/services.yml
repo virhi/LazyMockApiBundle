@@ -2,6 +2,7 @@ imports:
     - { resource: repositories.yml }
     - { resource: commands.yml }
     - { resource: queries.yml }
+    - { resource: specification.yml }
 
 parameters:
     virhi_lazy_mock_api.domain.service.read.class: Virhi\LazyMockApiBundle\Mock\Domain\Service\Mock\ReadService

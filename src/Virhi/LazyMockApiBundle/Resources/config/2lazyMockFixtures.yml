@@ -1,0 +1,93 @@
+fixtures:
+    s_get_urltest:
+        responseContentNeedJsonEncode: true
+        request:
+            url: "s_urltestget"
+            method: "GET"
+            content:
+        response:
+          status: "200"
+          content:
+            LastName: "Dummy"
+            Firstname: "Dummyer"
+
+    s_post_urltest:
+        request:
+            url: "s_urltest"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content"
+    s_post_urltest2:
+        request:
+            url: "s_urltest2"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 2"
+    s_post_urltest3:
+        request:
+            url: "s_urltest3"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 3"
+    s_post_urltest4:
+        request:
+            url: "s_urltest4"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 4"
+    s_post_urltest5:
+        request:
+            url: "s_urltest5"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 5"
+    s_post_urltest6:
+        request:
+            url: "s_urltest6"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 6"
+    s_post_urltest7:
+        request:
+            url: "s_urltest7"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 7"
+    s_post_urltest8:
+        request:
+            url: "s_urltest8"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 8"
+    s_post_urltest9:
+        request:
+            url: "s_urltest9"
+            method: "POST"
+            content: "test"
+        response:
+          status: "200"
+          content: "response content 9"
+    s_post_urltest10:
+        request:
+            url: "s_urltest10"
+            method: "POST"
+            content: "test"
+        response:
+          status: "400"
+          content: "response content 10"

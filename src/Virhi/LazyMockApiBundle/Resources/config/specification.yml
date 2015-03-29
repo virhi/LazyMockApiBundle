@@ -1,0 +1,3 @@
+services:
+    virhi_lazy_mock_api.application.specification.import_mock:
+        class: Virhi\LazyMockApiBundle\Mock\Application\Specification\ImportMockSpecification
