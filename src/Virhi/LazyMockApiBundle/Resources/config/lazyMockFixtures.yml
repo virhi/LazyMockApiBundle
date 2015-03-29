@@ -1,12 +1,16 @@
 fixtures:
     get_urltest:
+        responseContentNeedJsonEncode: true
         request:
             url: "urltestget"
             method: "GET"
             content:
         response:
           status: "200"
-          content: "response content"
+          content:
+            LastName: "Dummy"
+            Firstname: "Dummyer"
+
     post_urltest:
         request:
             url: "urltest"

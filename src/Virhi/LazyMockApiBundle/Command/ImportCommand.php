@@ -16,18 +16,22 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Parser;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Factory\MockFactory;
+use Symfony\Component\Finder\Finder;
 
 class ImportCommand extends ContainerAwareCommand
 {
-    protected $filePath;
-    protected $fileName;
+    protected $path;
+
+    /**
+     * @var Finder
+     */
+    protected $finder;
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
         parent::initialize($input, $output);
-
-        $this->filePath =  $input->getOption('path');
-        $this->fileName =  $input->getOption('target');
+        $this->path =  $input->getOption('path');
+        $this->finder   =  New Finder();
     }
 
     protected function configure()
@@ -35,13 +39,6 @@ class ImportCommand extends ContainerAwareCommand
         $this
             ->setName('virhi:lazymock:import')
             ->setDescription('import mock')
-            ->addOption(
-                'target',
-                't',
-                InputOption::VALUE_OPTIONAL,
-                'the target file',
-                'lazyMockFixtures.yml'
-            )
             ->addOption(
                 'path',
                 'p',
@@ -58,19 +55,25 @@ class ImportCommand extends ContainerAwareCommand
         $output->writeln('Import mock from file.');
         $output->writeln('');
 
-        $fileLocator = new FileLocator($this->filePath);
         $parser      = new Parser();
 
-        try {
-            $fileContent = $parser->parse(file_get_contents($fileLocator->locate($this->fileName)));
-            foreach ($fileContent['fixtures'] as $fixture)
-            {
-                $jsonMock = json_encode($fixture);
-                $this->getContainer()->get('virhi_lazy_mock_api.domain.service.write')->editMock(MockFactory::build($jsonMock));
-            }
+        foreach ($this->finder->files()->in($this->path)->name('*lazyMockFixtures.yml') as $file) {
+            try {
+                $fileContent = $parser->parse($file->getContents());
+                foreach ($fileContent['fixtures'] as $fixture) {
 
-        } catch (ParseException $e) {
-            printf("Unable to parse the YAML string: %s", $e->getMessage());
+                    if (is_array($fixture) && array_key_exists('responseContentNeedJsonEncode',$fixture) && $fixture['responseContentNeedJsonEncode'] === true) {
+                        $fixture["response"]["content"] = json_encode($fixture["response"]["content"]);
+                    }
+
+                    $jsonMock = json_encode($fixture);
+                    $this->getContainer()->get('virhi_lazy_mock_api.domain.service.write')->editMock(MockFactory::build($jsonMock));
+
+                }
+
+            } catch (ParseException $e) {
+                printf("Unable to parse the YAML string: %s", $e->getMessage());
+            }
         }
     }
 }
