@@ -33,4 +33,12 @@ class MockController extends Controller
 
         return new JsonResponse($result->jsonSerialize());
     }
+
+    public function responseAction(Request $request, $url)
+    {
+        $context = new RequestMockContext($request);
+        $result  = $this->get('virhi_lazy_mock_api.application.query.request_mock')->execute($context);
+
+        return new JsonResponse(json_decode($result->getResponse()->getContent()), (int)$result->getResponse()->getStatus());
+    }
 } 

@@ -24,6 +24,14 @@ virhi_lazy_mock_api_mock:
     options:
         expose: true
 
+virhi_lazy_mock_api_response:
+    path:     /response/{url}
+    defaults: { _controller: VirhiLazyMockApiBundle:Mock:response, url: false }
+    requirements:
+            url: ".+"
+    options:
+        expose: true
+
 virhi_lazy_mock_api_list:
     path:     /list
     defaults: { _controller: VirhiLazyMockApiBundle:Mock:listMock }
