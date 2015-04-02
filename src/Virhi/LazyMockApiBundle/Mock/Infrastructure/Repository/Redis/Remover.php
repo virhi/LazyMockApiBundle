@@ -16,7 +16,7 @@ class Remover extends Repository implements RemoverInterface
     public function remove($mock)
     {
         if (!$mock instanceof Mock) {
-            throw new \RuntimeException("Invalid entity to save");
+            throw new \RuntimeException("Invalid entity to remove");
         }
         $this->getClient()->del($mock->getId());
     }

@@ -8,22 +8,22 @@
 
 namespace Virhi\LazyMockApiBundle\Mock\Infrastructure\Repository\Redis;
 
-use Predis\Client;
+use Predis\ClientInterface;
 
-class Repository
+class Repository implements RedisRepositoryInterface
 {
     /**
-     * @var Client
+     * @var ClientInterface
      */
     protected $client;
 
-    function __construct(Client $client)
+    function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
 
     /**
-     * @return Client
+     * @return ClientInterface
      */
     public function getClient()
     {
