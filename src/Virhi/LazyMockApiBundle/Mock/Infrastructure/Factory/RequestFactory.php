@@ -29,7 +29,7 @@ class RequestFactory
         $request = $content->request;
         foreach ($mapping as $attribut => $method) {
             if (!property_exists($request, $attribut)) {
-                throw new \RuntimeException('error de request builder');
+                throw new \RuntimeException('unrecognized attribit : error de request builder');
             }
             $result->{$method}($request->{$attribut});
         }
