@@ -48,4 +48,12 @@ class Mock extends Entity
         return md5(json_encode($this->request));
     }
 
+    function jsonSerialize()
+    {
+        $result = array(
+            'request'  => $this->request->jsonSerialize(),
+            'response' => $this->response->jsonSerialize(),
+        );
+        return $result;
+    }
 }
