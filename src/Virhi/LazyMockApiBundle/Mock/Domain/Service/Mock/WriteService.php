@@ -15,7 +15,14 @@ use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Mock;
 
 class WriteService
 {
+    /**
+     * @var AttacherInterface
+     */
     protected $attacher;
+
+    /**
+     * @var RemoverInterface
+     */
     protected $remover;
 
     function __construct(AttacherInterface $attacher, RemoverInterface $remover)

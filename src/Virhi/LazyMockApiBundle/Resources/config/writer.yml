@@ -1,0 +1,6 @@
+services:
+
+    virhi_lazy_mock_api.infrastructure.writer.yaml:
+        class: Virhi\LazyMockApiBundle\Mock\Infrastructure\Writer\YamlWriter
+        arguments:
+            - @filesystem

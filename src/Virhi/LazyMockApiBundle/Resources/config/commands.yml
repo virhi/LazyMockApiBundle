@@ -3,6 +3,7 @@ parameters:
     virhi_lazy_mock_api.application.command.edit.class: Virhi\LazyMockApiBundle\Mock\Application\Command\EditCommand
     virhi_lazy_mock_api.application.command.delete.class: Virhi\LazyMockApiBundle\Mock\Application\Command\DeleteCommand
     virhi_lazy_mock_api.application.command.delete_list.class: Virhi\LazyMockApiBundle\Mock\Application\Command\DeleteListCommand
+    virhi_lazy_mock_api.application.command.mock_to_yaml.class: Virhi\LazyMockApiBundle\Mock\Application\Command\MockToYamlCommand
 
 services:
 
@@ -24,3 +25,8 @@ services:
         class: %virhi_lazy_mock_api.application.command.delete_list.class%
         arguments:
             - @virhi_lazy_mock_api.infrastructure.repository.redis.mock
+
+    virhi_lazy_mock_api.application.command.mock_to_yaml:
+        class: %virhi_lazy_mock_api.application.command.mock_to_yaml.class%
+        arguments:
+            - @virhi_lazy_mock_api.infrastructure.writer.yaml
