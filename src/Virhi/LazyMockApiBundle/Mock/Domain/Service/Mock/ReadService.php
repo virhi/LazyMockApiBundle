@@ -50,7 +50,7 @@ class ReadService
         $mock   = $this->finder->find($search);
 
         if ($mock === null || !$mock instanceof Mock) {
-            throw new \RuntimeException("le mock n'as pas été trouvé");
+            throw new \RuntimeException("le mock n'as pas été trouvé.");
         }
 
         return $mock;
