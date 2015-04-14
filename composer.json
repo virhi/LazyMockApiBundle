@@ -49,7 +49,6 @@
         "behat/mink-goutte-driver": "~1.0",
         "behat/gherkin": "2.3.*@dev",
         "behat/common-contexts" : "1.2.*",
-        "khepin/yaml-fixtures-bundle": "~0.8.1",
-        "misd/guzzle-bundle": "~1.0"
+        "khepin/yaml-fixtures-bundle": "~0.8.1"
     }
 }
