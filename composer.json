@@ -28,7 +28,7 @@
         "virhi/admin-bundle": "0.2.2",
         "friendsofsymfony/jsrouting-bundle": "1.5.*",
         "virhi/component": "0.0.3",
-        "misd/guzzle-bundle": "~1.1"
+        "misd/guzzle-bundle": "1.1.5"
     },
 
 
