@@ -49,3 +49,10 @@ virhi_lazy_mock_api_delete:
     defaults: { _controller: VirhiLazyMockApiBundle:MockWrite:deleteMock}
     options:
         expose: true
+
+
+virhi_lazy_mock_yaml_mock:
+    path:     /yaml/{key}
+    defaults: { _controller: VirhiLazyMockApiBundle:YamlMock:getMockYaml}
+    options:
+        expose: true

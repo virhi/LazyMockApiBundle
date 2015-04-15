@@ -19,6 +19,7 @@ use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Request;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Response;
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Mock;
 use Guzzle\Http\Message\Response as GuzzleResponse;
+use Virhi\LazyMockApiBundle\Mock\Infrastructure\Writer\YamlWriterContext;
 
 class ConvertJsonHttpToYamlCommand extends ContainerAwareCommand
 {
@@ -103,26 +104,13 @@ class ConvertJsonHttpToYamlCommand extends ContainerAwareCommand
 
     protected function writeMock(Mock $mock, OutputInterface $output)
     {
-        $dumper       = new Dumper();
-        $fs           = new Filesystem();
-        $key          = $this->getConvertKey($mock);
-        $filename     = $key . '.yml';
-        $fullFileName = $this->path . '/' . $filename;
-        $result       = array(
-            'fixtures' => array(
-                'responseContentNeedJsonEncode' => true,
-                $key                            => $mock->jsonSerialize(),
-            )
-        );
+        $context = new YamlWriterContext($mock, $this->yamlInlineLevel, $this->path);
+        $writer = $this->getContainer()->get('virhi_lazy_mock_api.infrastructure.writer.yaml');
+        $writer->write($context);
+        $output->writeln($context->getKey() . ' mock created');
 
-        if ($fs->exists($fullFileName)) {
-            $fs->remove($fullFileName);
-        }
-
-        $fs->dumpFile($fullFileName , $dumper->dump($result, $this->yamlInlineLevel));
-        $output->writeln($key . ' mock created');
         if (OutputInterface::VERBOSITY_VERBOSE <= $output->getVerbosity()) {
-            $output->writeln('You can find it at : ' . $fullFileName);
+            $output->writeln('You can find it at : ' . $context->getFullFileName());
         }
     }
 

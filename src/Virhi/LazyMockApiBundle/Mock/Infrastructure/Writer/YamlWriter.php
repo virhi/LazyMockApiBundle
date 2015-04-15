@@ -27,10 +27,7 @@ class YamlWriter
     {
         $fullFileName = $context->getFullFileName();
         $result       = array(
-            'fixtures' => array(
-                'responseContentNeedJsonEncode' => true,
-                $context->getKey()              => $context->getMock()->jsonSerialize(),
-            )
+            'fixtures' => $this->getFileContent($context)
         );
 
         if ($this->fs->exists($fullFileName)) {
@@ -38,5 +35,17 @@ class YamlWriter
         }
 
         $this->fs->dumpFile($fullFileName , $this->dumper->dump($result, $context->getYamlInlineLevel()));
+    }
+
+    protected function getFileContent($context)
+    {
+        $mock  = $context->getMock()->jsonSerialize();
+        $mock['responseContentNeedJsonEncode'] = true;
+
+        $result = array(
+            $context->getKey() => $mock
+        );
+
+        return $result;
     }
 }
