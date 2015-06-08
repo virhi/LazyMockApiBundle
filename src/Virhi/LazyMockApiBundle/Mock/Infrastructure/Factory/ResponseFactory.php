@@ -10,9 +10,12 @@ namespace Virhi\LazyMockApiBundle\Mock\Infrastructure\Factory;
 
 
 use Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Response;
+use Virhi\Component\Date\Interval\DateIntervalService;
 
 class ResponseFactory
 {
+    use DateIntervalService;
+
     /**
      * @param Request $request
      * @return Mock
@@ -38,6 +41,23 @@ class ResponseFactory
             $result->{$method}($request->{$attribut});
         }
 
-        return $result;
+        return self::buildContent($result);
+    }
+
+    protected static function buildContent(Response $response)
+    {
+        if (is_object($response->getContent())) {
+            $properties = get_object_vars($response->getContent());
+            foreach ($properties as $propertieName => $propertieValue) {
+                $dateInterval = \DateInterval::createFromDateString($propertieValue);
+                if (!self::dateIntervalisNull($dateInterval)) {
+                    $date = new \DateTime();
+                    $date->add($dateInterval);
+                    $response->getContent()->{$propertieName} = $date;
+                }
+            }
+        }
+
+        return $response;
     }
 }
