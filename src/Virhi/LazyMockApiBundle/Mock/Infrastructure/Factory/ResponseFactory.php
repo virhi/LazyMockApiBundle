@@ -46,18 +46,31 @@ class ResponseFactory
 
     protected static function buildContent(Response $response)
     {
-        if (is_object($response->getContent())) {
-            $properties = get_object_vars($response->getContent());
-            foreach ($properties as $propertieName => $propertieValue) {
+        $content = json_decode($response->getContent(), true);
+
+        if (is_array($content)) {
+            $response->setContent(json_encode(self::buildProperties($content)));
+        }
+
+        return $response;
+    }
+
+    protected static function buildProperties($properties)
+    {
+        foreach ($properties as $propertieName => $propertieValue) {
+            if (is_object($propertieValue) ) {
+                $properties[$propertieName] = self::buildProperties($propertieValue);
+            } elseif (is_array($propertieValue)) {
+                $properties[$propertieName] = self::buildProperties($propertieValue);
+            } else {
                 $dateInterval = \DateInterval::createFromDateString($propertieValue);
                 if (!self::dateIntervalisNull($dateInterval)) {
                     $date = new \DateTime();
                     $date->add($dateInterval);
-                    $response->getContent()->{$propertieName} = $date;
+                    $properties[$propertieName] = $date;
                 }
             }
         }
-
-        return $response;
+        return $properties;
     }
 }
