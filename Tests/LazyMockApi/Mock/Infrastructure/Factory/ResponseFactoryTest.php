@@ -20,7 +20,7 @@ class ResponseFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $request = array(
             'response' => array(
-                'status'     => 'toto',
+                'status'  => 'toto',
                 'content' => 'content',
             )
         );
@@ -29,5 +29,24 @@ class ResponseFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Response', $actual);
         $this->assertEquals('toto', $actual->getStatus());
         $this->assertEquals('content', $actual->getContent());
+    }
+
+    public function testBuildWillTCreateResponseWhitDate()
+    {
+        $request = array(
+            'response' => array(
+                'status'  => 'toto',
+                'content' => json_encode(array('date' => '1 days')),
+            )
+        );
+
+        $actual = ResponseFactory::build(json_encode($request));
+        $content = json_decode($actual->getContent());
+
+        $this->assertInstanceOf('\Virhi\LazyMockApiBundle\Mock\Infrastructure\Entity\Response', $actual);
+        $this->assertEquals('toto', $actual->getStatus());
+        $this->assertTrue(property_exists($content, 'date'));
+        $this->assertEquals((new \DateTime())->add(\DateInterval::createFromDateString('1 day'))->format('Y-m-d h:i:s.u'), $content->date->date);
+
     }
 }
